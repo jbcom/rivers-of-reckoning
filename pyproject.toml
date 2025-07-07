@@ -1,19 +1,16 @@
 [tool.poetry]
 name = "first-python-rpg"
-version = "0.2.0"
-description = "A Python RPG game with both Pygame and Pyxel support, featuring procedural generation and modern game mechanics."
+version = "0.3.0"
+description = "A Python RPG game built with Pyxel, featuring procedural generation and modern game mechanics."
 authors = ["Your Name <you@example.com>"]
+packages = [{include = "first_python_rpg", from = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.13"
-windows-curses = "^2.3.2"
-pygame = "^2.6.0"
+python = "^3.8"
 pyxel = "^2.4.0"
 
 [tool.poetry.scripts]
-rpg-pygame = "main:main"
-rpg-pyxel = "main_pyxel:main"
-rpg-enhanced = "main_enhanced:main"
+first-python-rpg = "first_python_rpg.cli:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
