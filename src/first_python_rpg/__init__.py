@@ -9,4 +9,4 @@ from .game import Game
 from .player import Player
 from .enemy import Enemy
 
-__all__ = ['Game', 'Player', 'Enemy']
+__all__ = ["Game", "Player", "Enemy"]

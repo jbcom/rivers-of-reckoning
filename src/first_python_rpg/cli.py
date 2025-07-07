@@ -9,7 +9,7 @@ from .game import Game
 def main():
     """Main CLI entry point"""
     print("Starting First Python RPG...")
-    
+
     try:
         game = Game()
         game.run()

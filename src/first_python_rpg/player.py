@@ -1,12 +1,13 @@
 import random
 from .map_data import DIFFICULTY_LEVELS, MAP_SIZE
 
+
 class Player:
-    def __init__(self, difficulty='Easy'):
+    def __init__(self, difficulty="Easy"):
         self.x = MAP_SIZE // 2  # Center player horizontally
         self.y = MAP_SIZE // 2  # Center player vertically
-        self.health = DIFFICULTY_LEVELS[difficulty]['max_health']
-        self.max_health = DIFFICULTY_LEVELS[difficulty]['max_health']
+        self.health = DIFFICULTY_LEVELS[difficulty]["max_health"]
+        self.max_health = DIFFICULTY_LEVELS[difficulty]["max_health"]
         self.score = 0
         self.bonus_points = 0
         self.weaken_enemies = False
@@ -22,12 +23,37 @@ class Player:
         self.mana = 5
         self.max_mana = 5
         self.spells = [
-            {'name': 'Fireball', 'cost': 2, 'desc': 'Deal 4-7 damage', 'effect': 'fireball'},
-            {'name': 'Heal', 'cost': 2, 'desc': 'Restore 4 HP', 'effect': 'heal'},
-            {'name': 'Shield Up', 'cost': 3, 'desc': 'Block next attack', 'effect': 'block'},
-            {'name': 'Stun', 'cost': 3, 'desc': 'Stun enemy for 1 turn', 'effect': 'stun'},
-            {'name': 'Poison', 'cost': 2, 'desc': 'Poison enemy (2 dmg/turn)', 'effect': 'poison'},
-            {'name': 'Mana Regen', 'cost': 0, 'desc': 'Restore 2 mana (1/encounter)', 'effect': 'manaregen'},
+            {
+                "name": "Fireball",
+                "cost": 2,
+                "desc": "Deal 4-7 damage",
+                "effect": "fireball",
+            },
+            {"name": "Heal", "cost": 2, "desc": "Restore 4 HP", "effect": "heal"},
+            {
+                "name": "Shield Up",
+                "cost": 3,
+                "desc": "Block next attack",
+                "effect": "block",
+            },
+            {
+                "name": "Stun",
+                "cost": 3,
+                "desc": "Stun enemy for 1 turn",
+                "effect": "stun",
+            },
+            {
+                "name": "Poison",
+                "cost": 2,
+                "desc": "Poison enemy (2 dmg/turn)",
+                "effect": "poison",
+            },
+            {
+                "name": "Mana Regen",
+                "cost": 0,
+                "desc": "Restore 2 mana (1/encounter)",
+                "effect": "manaregen",
+            },
         ]
         self.spell_unlocks = {0, 1, 2}
         self.block_next = False
@@ -41,7 +67,7 @@ class Player:
 
     def move(self, dx, dy, wrap=True):
         if self.confused > 0 and random.random() < 0.5:
-            dx, dy = random.choice([(0,1),(0,-1),(1,0),(-1,0)])
+            dx, dy = random.choice([(0, 1), (0, -1), (1, 0), (-1, 0)])
         self.x = (self.x + dx) % MAP_SIZE
         self.y = (self.y + dy) % MAP_SIZE
         if self.confused > 0:
@@ -53,7 +79,7 @@ class Player:
     def heal(self, amt):
         self.health += amt
         self.potions_used += 1
-        if not DIFFICULTY_LEVELS[self.difficulty]['overheal_penalty']:
+        if not DIFFICULTY_LEVELS[self.difficulty]["overheal_penalty"]:
             self.health = min(self.health, self.max_health)
         elif self.health > self.max_health:
             self.confused = random.randint(2, 5)
@@ -79,28 +105,28 @@ class Player:
         if idx not in self.spell_unlocks:
             return "Spell not unlocked!"
         spell = self.spells[idx]
-        if self.mana < spell['cost']:
+        if self.mana < spell["cost"]:
             return "Not enough mana!"
-        self.mana -= spell['cost']
-        if spell['effect'] == 'fireball':
+        self.mana -= spell["cost"]
+        if spell["effect"] == "fireball":
             dmg = random.randint(4, 7)
             enemy.health -= dmg
             return f"You cast Fireball! {dmg} damage."
-        elif spell['effect'] == 'heal':
+        elif spell["effect"] == "heal":
             self.heal(4)
             return "You cast Heal! +4 HP."
-        elif spell['effect'] == 'block':
+        elif spell["effect"] == "block":
             self.block_next = True
             return "You cast Shield Up! Block next attack."
-        elif spell['effect'] == 'stun':
-            enemy.status = 'stunned'
+        elif spell["effect"] == "stun":
+            enemy.status = "stunned"
             enemy.status_turns = 1
             return "You cast Stun! Enemy is stunned."
-        elif spell['effect'] == 'poison':
-            enemy.status = 'poisoned'
+        elif spell["effect"] == "poison":
+            enemy.status = "poisoned"
             enemy.status_turns = 3
             return "You cast Poison! Enemy is poisoned."
-        elif spell['effect'] == 'manaregen':
+        elif spell["effect"] == "manaregen":
             self.mana = min(self.max_mana, self.mana + 2)
             return "You cast Mana Regen! +2 Mana."
         return "Spell fizzled."
