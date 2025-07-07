@@ -2,19 +2,17 @@
 """Test script to verify the new library structure works"""
 
 import sys
-import os
-sys.path.insert(0, os.path.dirname(__file__))
 
 def test_library_import():
     """Test that we can import the library modules"""
     try:
-        from src.first_python_rpg import Game, Player, Enemy
+        from first_python_rpg import Game, Player, Enemy
         print("✓ Core library imports successful")
         
         # Test individual module imports
-        from src.first_python_rpg.map import MapPyxel
-        from src.first_python_rpg.map_data import MAP_SIZE, ENEMY_TYPES
-        from src.first_python_rpg.procedural_enemies import ProceduralEnemyGenerator
+        from first_python_rpg.map import MapPyxel
+        from first_python_rpg.map_data import MAP_SIZE, ENEMY_TYPES
+        from first_python_rpg.procedural_enemies import ProceduralEnemyGenerator
         print("✓ All module imports successful")
         
         return True
@@ -25,9 +23,9 @@ def test_library_import():
 def test_basic_functionality():
     """Test basic game object creation"""
     try:
-        from src.first_python_rpg import Player, Enemy
-        from src.first_python_rpg.map import MapPyxel
-        from src.first_python_rpg.procedural_enemies import ProceduralEnemyGenerator
+        from first_python_rpg import Player, Enemy
+        from first_python_rpg.map import MapPyxel
+        from first_python_rpg.procedural_enemies import ProceduralEnemyGenerator
         
         # Test object creation
         player = Player()
@@ -54,7 +52,7 @@ def test_game_creation():
     try:
         # Note: This will fail in headless mode due to pyxel.init()
         # But we can test the import at least
-        from src.first_python_rpg import Game
+        from first_python_rpg import Game
         print("✓ Game class can be imported")
         return True
     except Exception as e:

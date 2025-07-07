@@ -2,13 +2,11 @@
 """Test the enhanced Pyxel features"""
 
 import sys
-import os
-sys.path.insert(0, os.path.dirname(__file__))
 
 def test_enhanced_features():
     """Test that enhanced features work correctly"""
     try:
-        from pyxel_enhancements import (
+        from first_python_rpg.pyxel_enhancements import (
             EnhancedMapPyxel, 
             ProceduralDungeonGenerator, 
             QuestGenerator, 
@@ -50,7 +48,7 @@ def test_enhanced_features():
 def test_enhanced_game_class():
     """Test the enhanced game class (without initializing Pyxel)"""
     try:
-        from game_pyxel_enhanced import GamePyxelEnhanced
+        from first_python_rpg.game import Game
         
         # We can't actually create the game class because it initializes Pyxel
         # But we can test that the class is importable
@@ -65,7 +63,7 @@ def test_enhanced_game_class():
 def test_weather_system():
     """Test weather system functionality"""
     try:
-        from pyxel_enhancements import EnhancedMapPyxel
+        from first_python_rpg.pyxel_enhancements import EnhancedMapPyxel
         
         enhanced_map = EnhancedMapPyxel()
         
@@ -95,7 +93,7 @@ def test_weather_system():
 def test_quest_system():
     """Test quest generation system"""
     try:
-        from pyxel_enhancements import QuestGenerator
+        from first_python_rpg.pyxel_enhancements import QuestGenerator
         
         quest_gen = QuestGenerator()
         
@@ -134,7 +132,7 @@ def test_quest_system():
 def test_particle_system():
     """Test particle system"""
     try:
-        from pyxel_enhancements import ParticleSystem
+        from first_python_rpg.pyxel_enhancements import ParticleSystem
         
         particle_system = ParticleSystem()
         
@@ -181,7 +179,7 @@ def test_particle_system():
 def test_dungeon_generation():
     """Test procedural dungeon generation"""
     try:
-        from pyxel_enhancements import ProceduralDungeonGenerator
+        from first_python_rpg.pyxel_enhancements import ProceduralDungeonGenerator
         
         dungeon_gen = ProceduralDungeonGenerator(size=11)
         dungeon = dungeon_gen.generate_dungeon()

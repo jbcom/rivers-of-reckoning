@@ -9,6 +9,12 @@ packages = [{include = "first_python_rpg", from = "src"}]
 python = "^3.8"
 pyxel = "^2.4.0"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^4.0.0"
+tox = "^4.0.0"
+tox-gh-actions = "^3.0.0"
+
 [tool.poetry.scripts]
 first-python-rpg = "first_python_rpg.cli:main"
 
