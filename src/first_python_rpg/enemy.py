@@ -1,8 +1,8 @@
 import random
-from map_data import ENEMY_TYPES
+from .map_data import ENEMY_TYPES
 
 class Enemy:
-    def __init__(self, strength, etype=None):
+    def __init__(self, strength=1, etype=None):
         if etype is None:
             etype = random.choice(ENEMY_TYPES)
         self.type = etype

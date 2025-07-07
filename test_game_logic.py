@@ -1,12 +1,12 @@
 import pytest
-from player import Player
-from enemy import Enemy
-from map import Map
-from map_data import MAP_SIZE, DIFFICULTY_LEVELS, ENEMY_TYPES
+from src.first_python_rpg.player import Player
+from src.first_python_rpg.enemy import Enemy
+from src.first_python_rpg.map import MapPyxel as Map
+from src.first_python_rpg.map_data import MAP_SIZE, DIFFICULTY_LEVELS, ENEMY_TYPES
 
 # Player movement logic
 def test_player_move_wraps():
-    player = Player('Easy')
+    player = Player()
     player.x, player.y = 0, 0
     player.move(-1, 0)
     assert player.x == MAP_SIZE - 1
@@ -14,7 +14,7 @@ def test_player_move_wraps():
     assert player.y == MAP_SIZE - 1
 
 def test_player_move_confused():
-    player = Player('Easy')
+    player = Player()
     player.confused = 2
     old_x, old_y = player.x, player.y
     player.move(1, 0)

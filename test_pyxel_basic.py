@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 def test_game_pyxel_import():
     """Test that we can import the Pyxel game modules"""
     try:
-        from map_pyxel import MapPyxel
+        from src.first_python_rpg.map import MapPyxel
         print("✓ MapPyxel imported successfully")
         
         # Test map generation
@@ -31,16 +31,16 @@ def test_game_pyxel_import():
 def test_game_logic():
     """Test game logic without GUI"""
     try:
-        from player import Player
-        from enemy import Enemy
-        from map_data import MAP_SIZE, DIFFICULTY_LEVELS
+        from src.first_python_rpg.player import Player
+        from src.first_python_rpg.enemy import Enemy
+        from src.first_python_rpg.map_data import MAP_SIZE, DIFFICULTY_LEVELS
         
         # Test player creation
-        player = Player('Easy')
+        player = Player()
         print(f"✓ Player created with health {player.health}")
         
         # Test enemy creation  
-        enemy = Enemy(strength=2)
+        enemy = Enemy()
         print(f"✓ Enemy created: {enemy.name}")
         
         # Test map constants
