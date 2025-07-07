@@ -1,4 +1,4 @@
-from map_data import SHOP_ITEMS
+from .map_data import SHOP_ITEMS
 import time
 
 def shop_menu(stdscr, player):

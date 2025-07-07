@@ -1,7 +1,7 @@
 import random
 import time
 import winsound
-from map_data import BOSS_SPRITES, BOSS_NAMES
+from .map_data import BOSS_SPRITES, BOSS_NAMES
 
 def boss_screen(stdscr, player, boss_num, boss_strength, boss_health):
     boss_idx = boss_num - 1

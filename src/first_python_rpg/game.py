@@ -1,17 +1,17 @@
 import pyxel
 import random
-from player import Player
-from enemy import Enemy
-from map_data import MAP_SIZE, DIFFICULTY_LEVELS, EVENT_TYPES
-from pyxel_enhancements import (
+from .player import Player
+from .enemy import Enemy
+from .map_data import MAP_SIZE, DIFFICULTY_LEVELS, EVENT_TYPES
+from .pyxel_enhancements import (
     EnhancedMapPyxel, 
     ProceduralDungeonGenerator, 
     QuestGenerator, 
     ParticleSystem
 )
 
-class GamePyxelEnhanced:
-    """Enhanced Pyxel version with modern features"""
+class Game:
+    """First Python RPG Game - Enhanced Pyxel version with modern features"""
     
     def __init__(self):
         # Pyxel app configuration
@@ -19,7 +19,7 @@ class GamePyxelEnhanced:
         self.WINDOW_HEIGHT = 256
         
         # Initialize Pyxel
-        pyxel.init(self.WINDOW_WIDTH, self.WINDOW_HEIGHT, title="First Python RPG - Enhanced")
+        pyxel.init(self.WINDOW_WIDTH, self.WINDOW_HEIGHT, title="First Python RPG")
         
         # Game state
         self.running = True
@@ -443,3 +443,7 @@ class GamePyxelEnhanced:
         
         pyxel.text(self.WINDOW_WIDTH//2 - 40, self.WINDOW_HEIGHT//2 + 20, "SPACE: Menu", self.colors['ui'])
         pyxel.text(self.WINDOW_WIDTH//2 - 30, self.WINDOW_HEIGHT//2 + 30, "ESC: Quit", self.colors['ui'])
+    
+    def run(self):
+        """Run the game using pyxel.run()"""
+        pyxel.run(self.update, self.draw)

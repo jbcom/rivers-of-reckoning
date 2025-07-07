@@ -1,6 +1,6 @@
 import pyxel
 import random
-from map_data import MAP_SIZE
+from .map_data import MAP_SIZE
 
 # Pyxel color palette mapping for terrain
 TILE_COLORS = {

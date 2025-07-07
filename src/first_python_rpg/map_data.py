@@ -1,5 +1,3 @@
-import curses
-
 MAP_SIZE = 11
 
 ENEMY_TYPES = [
@@ -23,11 +21,12 @@ ACHIEVEMENTS = [
     {'name': 'Untouchable', 'desc': 'Win without dying once.'},
 ]
 
+# Pyxel key constants for directions
 DIRECTIONS = {
-    curses.KEY_UP: (0, -1, 'North'),
-    curses.KEY_DOWN: (0, 1, 'South'),
-    curses.KEY_LEFT: (-1, 0, 'West'),
-    curses.KEY_RIGHT: (1, 0, 'East'),
+    'up': (0, -1, 'North'),
+    'down': (0, 1, 'South'),
+    'left': (-1, 0, 'West'),
+    'right': (1, 0, 'East'),
 }
 
 SPRITES = {
@@ -85,17 +84,17 @@ BOSS_SPRITES = [
         "   | || |   "
     ],
     [
-        "   /\_/\   ",
+        "   /\\_/\\   ",
         "  ( >_< )  ",
         "  (  ==  ) ",
-        "  /|    |\ ",
+        "  /|    |\\ ",
         "   | || |  "
     ],
     [
-        "   /\_/\   ",
+        "   /\\_/\\   ",
         "  ( o_o )  ",
         "  (  vv  ) ",
-        "  /|    |\ ",
+        "  /|    |\\ ",
         "   | || |  "
     ]
 ]

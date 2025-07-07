@@ -6,7 +6,7 @@ This module adds procedural generation improvements and modern features
 import pyxel
 import random
 import math
-from map_pyxel import MapPyxel
+from .map import MapPyxel
 
 class EnhancedMapPyxel(MapPyxel):
     """Enhanced map with procedural generation and advanced features"""
@@ -67,7 +67,7 @@ class EnhancedMapPyxel(MapPyxel):
         for y in range(self.size):
             for x in range(self.size):
                 tile = self.grid[y][x]
-                from map_pyxel import TILE_COLORS
+                from .map import TILE_COLORS
                 base_color = TILE_COLORS.get(tile, 0)
                 
                 # Apply weather/time modifiers

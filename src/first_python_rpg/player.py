@@ -1,8 +1,8 @@
 import random
-from map_data import DIFFICULTY_LEVELS, MAP_SIZE
+from .map_data import DIFFICULTY_LEVELS, MAP_SIZE
 
 class Player:
-    def __init__(self, difficulty):
+    def __init__(self, difficulty='Easy'):
         self.x = MAP_SIZE // 2  # Center player horizontally
         self.y = MAP_SIZE // 2  # Center player vertically
         self.health = DIFFICULTY_LEVELS[difficulty]['max_health']
