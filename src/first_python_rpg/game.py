@@ -9,6 +9,7 @@ from .pyxel_enhancements import (
     QuestGenerator, 
     ParticleSystem
 )
+from .boss import update_boss_battle, draw_boss_battle
 
 class Game:
     """First Python RPG Game - Enhanced Pyxel version with modern features"""
@@ -23,7 +24,7 @@ class Game:
         
         # Game state
         self.running = True
-        self.state = 'feature_select'  # 'feature_select', 'playing', 'paused', 'gameover'
+        self.state = 'feature_select'  # 'feature_select', 'playing', 'paused', 'gameover', 'boss_battle'
         
         # Enhanced features
         self.features = {
@@ -48,6 +49,11 @@ class Game:
         
         # Game objects
         self.player = None
+        self.map = None
+        self.enemies = []
+        self.event_message = None
+        self.event_timer = 0
+        self.boss_data = None  # For boss battle state
         self.enemies = []
         self.map = None
         self.event_message = None
@@ -97,6 +103,8 @@ class Game:
             self.update_paused()
         elif self.state == 'gameover':
             self.update_gameover()
+        elif self.state == 'boss_battle':
+            update_boss_battle(self)
     
     def draw(self):
         """Main draw loop called by Pyxel"""
@@ -110,6 +118,8 @@ class Game:
             self.draw_paused()
         elif self.state == 'gameover':
             self.draw_gameover()
+        elif self.state == 'boss_battle':
+            draw_boss_battle(self)
     
     def update_feature_select(self):
         """Handle feature selection state"""
@@ -282,10 +292,12 @@ class Game:
         # Draw map
         self.map.draw()
         
-        # Draw player
+        # Draw player using procedural sprite
+        from .map_data import SPRITES
         player_x = self.player.x * (self.WINDOW_WIDTH // MAP_SIZE)
         player_y = self.player.y * (self.WINDOW_HEIGHT // MAP_SIZE) + 20
-        pyxel.rect(player_x, player_y, 8, 8, self.colors['player'])
+        tile_size = self.WINDOW_WIDTH // MAP_SIZE
+        SPRITES['player'](player_x, player_y, tile_size, self.colors['player'])
         
         # Draw particles
         if self.features['particle_effects']:

@@ -44,7 +44,9 @@ class MapPyxel:
         return False
     
     def draw(self):
-        """Draw the map using Pyxel"""
+        """Draw the map using Pyxel with procedural sprites"""
+        from .map_data import SPRITES
+        
         for y in range(self.size):
             for x in range(self.size):
                 tile = self.grid[y][x]
@@ -54,23 +56,22 @@ class MapPyxel:
                 px = x * self.tile_size
                 py = y * self.tile_size + 20  # Offset for HUD
                 
-                # Draw tile
+                # Draw base tile
                 pyxel.rect(px, py, self.tile_size, self.tile_size, color)
                 
-                # Add simple symbols for non-walkable tiles
-                if tile in ('T', 'R', 'o', '#'):
-                    # Draw a simple symbol in the center
+                # Draw procedural sprites for special tiles
+                if tile == 'T':  # Tree
+                    SPRITES['tree'](px, py, self.tile_size, 11)
+                elif tile == 'R':  # Rock
+                    SPRITES['rock'](px, py, self.tile_size, 13)
+                elif tile == 'o':  # Water (keep simple for now)
                     center_x = px + self.tile_size // 2
                     center_y = py + self.tile_size // 2
-                    
-                    if tile == 'T':  # Tree
-                        pyxel.pset(center_x, center_y, 3)  # Green pixel
-                    elif tile == 'R':  # Rock
-                        pyxel.pset(center_x, center_y, 13)  # Gray pixel
-                    elif tile == 'o':  # Water
-                        pyxel.pset(center_x, center_y, 12)  # Blue pixel
-                    elif tile == '#':  # Stone
-                        pyxel.pset(center_x, center_y, 5)   # Dark gray pixel
+                    pyxel.pset(center_x, center_y, 12)  # Blue pixel
+                elif tile == '#':  # Stone (keep simple for now)
+                    center_x = px + self.tile_size // 2
+                    center_y = py + self.tile_size // 2
+                    pyxel.pset(center_x, center_y, 5)   # Dark gray pixel
     
     def move_player(self, player, dx, dy):
         """Move player with map constraints"""
