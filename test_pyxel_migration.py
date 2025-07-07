@@ -3,15 +3,11 @@
 Test suite for Pyxel migration to ensure compatibility with existing functionality
 """
 
-import sys
-import os
 import pytest
-sys.path.insert(0, os.path.dirname(__file__))
-
-from player import Player
-from enemy import Enemy
-from map_data import MAP_SIZE, DIFFICULTY_LEVELS
-from map_pyxel import MapPyxel
+from first_python_rpg.player import Player
+from first_python_rpg.enemy import Enemy
+from first_python_rpg.map_data import MAP_SIZE, DIFFICULTY_LEVELS
+from first_python_rpg.map import MapPyxel
 
 def test_pyxel_map_generation():
     """Test that Pyxel map generation works correctly"""
@@ -84,7 +80,7 @@ def test_pyxel_color_mapping():
     map_obj = MapPyxel()
     
     # Check that all tile types have color mappings
-    from map_pyxel import TILE_COLORS
+    from first_python_rpg.map import TILE_COLORS
     
     for row in map_obj.grid:
         for tile in row:
@@ -109,14 +105,14 @@ def test_import_game_pyxel():
 def test_backward_compatibility():
     """Test that existing pygame components still work"""
     # Test that we can still create the original classes without pygame init
-    from map import Map
+    from first_python_rpg.map import Map
     
     # Test that we can create the map
     original_map = Map()
     assert original_map.size == MAP_SIZE
     
     # Test that we can create the game in test mode (avoids pygame init)
-    from game import Game
+    from first_python_rpg.game import Game
     game = Game(test_mode=True)
     assert game.test_mode == True
     assert game.state == 'playing'

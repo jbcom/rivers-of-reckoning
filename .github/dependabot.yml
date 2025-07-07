@@ -1,0 +1,46 @@
+version: 2
+updates:
+  # Enable version updates for pip/Poetry
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "jbcom"
+    assignees:
+      - "jbcom"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    groups:
+      # Group patch and minor updates together
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Allow Dependabot to resolve conflicts
+    allow:
+      - dependency-type: "all"
+    # Auto-merge patch and minor updates that pass tests
+    # Note: This requires GitHub's auto-merge feature to be enabled
+    
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "jbcom"
+    assignees:
+      - "jbcom"
+    commit-message:
+      prefix: "ci"
+      include: "scope"

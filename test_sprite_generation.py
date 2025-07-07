@@ -3,8 +3,7 @@
 Test script to verify sprite procedural generation works correctly
 """
 
-import sys
-sys.path.insert(0, 'src')
+import pytest
 
 def test_sprite_functions():
     """Test that all sprite functions can be imported and called"""
