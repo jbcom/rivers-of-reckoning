@@ -1,12 +1,15 @@
 [tool.poetry]
-name = "move-forward-and-back"
+name = "first-python-rpg"
 version = "0.1.0"
-description = "A simple interactive terminal game for moving forward and backward."
+description = "A sophisticated 2D Role-Playing Game built with Pygame featuring turn-based combat, magic spells, equipment upgrades, and boss battles."
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.13"
-windows-curses = "^2.3.2"
+python = "^3.12"
+pygame = "^2.6.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
