@@ -1,12 +1,19 @@
 [tool.poetry]
-name = "move-forward-and-back"
-version = "0.1.0"
-description = "A simple interactive terminal game for moving forward and backward."
+name = "first-python-rpg"
+version = "0.2.0"
+description = "A Python RPG game with both Pygame and Pyxel support, featuring procedural generation and modern game mechanics."
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.13"
 windows-curses = "^2.3.2"
+pygame = "^2.6.0"
+pyxel = "^2.4.0"
+
+[tool.poetry.scripts]
+rpg-pygame = "main:main"
+rpg-pyxel = "main_pyxel:main"
+rpg-enhanced = "main_enhanced:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
