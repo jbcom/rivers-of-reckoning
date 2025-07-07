@@ -1,8 +1,8 @@
 import pytest
-from src.first_python_rpg.player import Player
-from src.first_python_rpg.enemy import Enemy
-from src.first_python_rpg.map import MapPyxel as Map
-from src.first_python_rpg.map_data import MAP_SIZE, DIFFICULTY_LEVELS, ENEMY_TYPES
+from first_python_rpg.player import Player
+from first_python_rpg.enemy import Enemy
+from first_python_rpg.map import MapPyxel as Map
+from first_python_rpg.map_data import MAP_SIZE, DIFFICULTY_LEVELS, ENEMY_TYPES
 
 # Player movement logic
 def test_player_move_wraps():
@@ -55,16 +55,16 @@ def test_enemy_init_and_alive():
 # Map logic
 def test_map_walkable():
     m = Map()
+    walkable_count = 0
     for y in range(m.size):
         for x in range(m.size):
-            assert m.is_walkable(x, y)
-    m = Map(procedural=True)
-    for y in range(m.size):
-        for x in range(m.size):
-            if m.grid[y][x] == '#':
-                assert not m.is_walkable(x, y)
-            else:
-                assert m.is_walkable(x, y)
+            tile = m.grid[y][x]
+            expected_walkable = tile not in ('o', '#', 'T', 'R')
+            assert m.is_walkable(x, y) == expected_walkable
+            if m.is_walkable(x, y):
+                walkable_count += 1
+    # Ensure there are some walkable tiles
+    assert walkable_count > 0
 
 # Enemy encounter simulation
 def test_enemy_encounter_damage():

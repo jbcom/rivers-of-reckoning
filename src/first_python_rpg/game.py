@@ -172,7 +172,7 @@ class Game:
         if self.features['weather_system']:
             self.map = EnhancedMapPyxel()
         else:
-            from map_pyxel import MapPyxel
+            from .map import MapPyxel
             self.map = MapPyxel()
         
         self.enemies = []
